@@ -4,7 +4,7 @@ import socketIOClient from 'socket.io-client';
 import Form from './Form';
 import UserList from './UserList';
 
-const socket = socketIOClient('http://localhost:8080');
+const socket = socketIOClient('/');
 
 export default class App extends Component {
   updateListeners = [];
