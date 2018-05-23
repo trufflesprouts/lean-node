@@ -1,9 +1,9 @@
 body {
-  margin: 0;
-  padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
     Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   font-size: 18px;
+  margin: 0;
+  padding: 0;
 }
 
 *:focus {
@@ -11,62 +11,62 @@ body {
 }
 
 .error-message {
+  background: #e0e0e0;
+  border: 2px solid #da4107;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px #0000002b;
+  color: #5a5a5a;
+  font-size: 1.7em;
+  font-weight: 400;
+  left: 50%;
+  opacity: 0;
+  padding: 16px 10%;
+  pointer-events: none;
   position: fixed;
   top: 10px;
-  z-index: 5;
-  background: #e0e0e0;
-  color: #5a5a5a;
-  font-weight: 400;
-  font-size: 1.7em;
-  left: 50%;
-  padding: 16px 10%;
   transform: translate(-50%, -140%);
-  border-radius: 20px;
-  border: 2px solid #da4107;
-  box-shadow: 0 8px 20px #0000002b;
   transition: transform 0.4s cubic-bezier(0.3, 1.3, 0.38, 1), opacity 0.3s ease;
-  opacity: 0;
-  pointer-events: none;
+  z-index: 5;
 }
 
 .error-message.visiable {
-  pointer-events: auto;
   opacity: 1;
+  pointer-events: auto;
   transform: translate(-50%, 0);
 }
 
 .error-message button {
-  position: absolute;
-  right: 10px;
   background: transparent;
   border: 0;
+  cursor: pointer;
   font-size: 1em;
+  padding-bottom: 7px;
+  position: absolute;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
-  padding-bottom: 7px;
-  cursor: pointer;
 }
 
 .flex {
   display: flex;
-  max-width: 1000px;
-  margin: 0 auto;
   height: 100vh;
+  margin: 0 auto;
+  max-width: 1000px;
   overflow: hidden;
 }
 
 form {
-  width: 310px;
   display: block;
-  padding: 30px;
   overflow: scroll;
+  padding: 30px;
   position: relative;
+  width: 310px;
 }
 
 label {
   display: block;
-  text-align: left;
   margin-bottom: 30px;
+  text-align: left;
 }
 
 label span {
@@ -84,19 +84,19 @@ form input,
 form select,
 form textarea,
 .avatar {
-  display: block;
-  width: 100%;
+  background: #f7f7f7;
+  border: 0;
+  border-radius: 3px;
+  box-shadow: 0 0px 0px 1px #e4e4e4;
   box-sizing: border-box;
+  color: black;
+  display: block;
+  font-size: 1em;
+  margin-top: 8px;
   padding: 7px 10px;
   padding-left: 100px;
   transition: background-color 0.2s ease-in-out;
-  border: 0;
-  border-radius: 3px;
-  background: #f7f7f7;
-  margin-top: 8px;
-  font-size: 1em;
-  box-shadow: 0 0px 0px 1px #e4e4e4;
-  color: black;
+  width: 100%;
 }
 
 .invalid {
@@ -126,11 +126,11 @@ form textarea:focus,
 }
 
 .avatar {
-  padding: 0;
-  display: flex;
   align-items: center;
-  justify-content: center;
+  display: flex;
   height: 50px;
+  justify-content: center;
+  padding: 0;
 }
 
 .avatar:hover,
@@ -140,11 +140,11 @@ form textarea:focus,
 }
 
 .avatar input {
-  width: 0.1px;
   height: 0.1px;
   opacity: 0;
   overflow: hidden;
   position: absolute;
+  width: 0.1px;
   z-index: -1;
 }
 
@@ -154,66 +154,68 @@ form textarea:focus,
 }
 
 .suggestions div {
-  margin-top: 30px;
   color: rgb(50, 50, 50);
   font-size: 0.9em;
+  margin-top: 30px;
 }
+
 .suggestions div {
   margin: 10px 0;
 }
 
 .suggestions span {
+  color: rgba(210, 0, 0, 1);
+  margin-right: 7px;
   text-decoration: underline;
   text-transform: capitalize;
-  margin-right: 7px;
-  color: rgba(210, 0, 0, 1);
 }
 
 .user-list {
-  position: relative;
   box-sizing: border-box;
+  display: flex;
   flex: 1;
+  flex-wrap: wrap;
+  height: 100%;
+  justify-content: space-between;
   list-style: none;
   margin: 0;
+  overflow: scroll;
   padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
   padding: 20px;
   padding-left: 1px;
-  height: 100%;
-  overflow: scroll;
+  position: relative;
 }
+
 form::-webkit-scrollbar,
 .user-list::-webkit-scrollbar {
   display: none;
 }
 
 .spinner {
+  animation: rotate 0.45s linear infinite;
   border: 1px solid;
-  width: 50px;
-  height: 50px;
   border-radius: 50%;
   border-top-color: transparent;
-  animation: rotate 0.45s linear infinite;
-  position: absolute;
+  height: 50px;
   left: 50%;
-  transform: translateX(-50%);
+  position: absolute;
   top: 100px;
+  transform: translateX(-50%);
+  width: 50px;
 }
 
 li {
-  width: 100%;
-  padding: 0;
   background: #f1f1f1;
   border-radius: 9px;
-  margin-bottom: 20px;
+  box-shadow: 0 0px 0px 1px #e4e4e4;
   display: grid;
   grid-template-columns: 130px auto;
-  box-shadow: 0 0px 0px 1px #e4e4e4;
   height: 130px;
+  margin-bottom: 20px;
   overflow: hidden;
+  padding: 0;
   position: relative;
+  width: 100%;
 }
 
 .user-list h2 {
@@ -223,34 +225,34 @@ li {
 }
 
 .user-list textarea {
-  font-weight: 300;
-  font-size: 0.9em;
-  padding: 0;
   background: transparent;
   border: 0;
-  resize: none;
+  font-size: 0.9em;
+  font-weight: 300;
   height: 26px;
+  padding: 0;
   padding-left: 20px;
+  resize: none;
 }
 
 img {
-  grid-row-start: 1;
-  grid-row-end: 5;
-  height: 130px;
   background: #e8e8e8;
+  grid-row-end: 5;
+  grid-row-start: 1;
+  height: 130px;
 }
 
 .apply-changes {
+  background: transparent;
+  border: 1px solid rebeccapurple;
+  border-radius: 7px;
+  cursor: pointer;
+  height: 30px;
   position: absolute;
   right: 10px;
   top: 10px;
-  height: 30px;
-  width: 50px;
-  border-radius: 7px;
-  background: transparent;
-  border: 1px solid rebeccapurple;
-  cursor: pointer;
   transition: all 0.2s ease-in-out;
+  width: 50px;
 }
 
 .hidden {
