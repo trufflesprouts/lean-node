@@ -28,9 +28,8 @@ const upload = multer({
   }
 });
 
-exports.index = [
-  upload.single('avatar'),
-
+// validate form data
+const validators = [
   check('id').exists(),
 
   check('username')
@@ -67,17 +66,28 @@ exports.index = [
 
   check('biography', 'Cant be empty and has to have least 10 digits')
     .isLength({ min: 1 })
-    .matches(/^([\s\S]*[0-9]){10,}.*$/),
+    .matches(/^([\s\S]*[0-9]){10,}.*$/)
+];
+
+exports.index = [
+  upload.single('avatar'),
+
+  validators,
 
   (req, res, next) => {
+    // validation errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      // return errors to client
       return res.status(422).json({ errors: errors.mapped() });
     }
 
+    // default image name
     let gcsname = null;
-
     if (req.file) {
+      /**
+       * Deal with image
+       */
       gcsname = Date.now() + req.file.originalname;
       const file = bucket.file(gcsname);
 
@@ -90,6 +100,7 @@ exports.index = [
         file.makePublic();
       });
 
+      // resize image and push it
       sharp(req.file.buffer)
         .resize(250, 250)
         .max()
@@ -98,13 +109,16 @@ exports.index = [
         });
     }
 
+    // user to be added to database
     const user = { ...matchedData(req), avatar: gcsname, date: Date.now() };
 
+    // add to database with the generated id
     database
       .collection('users')
       .doc(user.id)
       .set(user);
 
+    // return user info
     res.json(user);
   }
 ];
