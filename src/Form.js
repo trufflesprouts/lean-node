@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import uuidv4 from 'uuid/v4';
-import './Form.css';
 
-// validation messages (used by validationMessage method)
+// validation messages
 const messages = {
   username:
     'Has to be a combination of letters and numbers and longer than 8 digits',
   email: 'Not a valid email',
-  name: 'No número',
+  name: "Required, numbers aren't allowed",
   password:
     'Has to contain letters and numbers with at least one Capital letter',
-  biography: 'Cant be empty and has to have least 10 digits',
-  age: 'You must chose'
+  biography: 'Required, has to have least 10 digits',
+  age: 'Required'
 };
 
 // check if filed is valid using regex, takes name of field and its value
@@ -134,62 +133,74 @@ export default class Form extends Component {
   };
 
   validationMessage = name => {
-    if (this.state.validation[name] === false) {
-      return <span className="invalid">{messages[name]}</span>;
-    }
+    // if (this.state.validation[name] === false) {
+    //   return <span className="invalid">{messages[name]}</span>;
+    // }
   };
 
   render() {
+    const { validation } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          Name:
+          <span>Name</span>
           <input
             name="name"
+            className={validation.name === false ? 'invalid' : ''}
             type="text"
             value={this.state.name}
             onChange={this.handleChange}
             onBlur={this.validate}
           />
-          {this.validationMessage('name')}
         </label>
         <label>
-          Username:
+          <span>Username</span>
           <input
             name="username"
+            className={validation.username === false ? 'invalid' : ''}
             type="text"
             value={this.state.username}
             onChange={this.handleChange}
             onBlur={this.validate}
           />
-          {this.validationMessage('username')}
         </label>
         <label>
-          Email:
+          <span>Email</span>
           <input
             name="email"
+            className={validation.email === false ? 'invalid' : ''}
             type="email"
             value={this.state.email}
             onChange={this.handleChange}
             onBlur={this.validate}
           />
-          {this.validationMessage('email')}
         </label>
         <label>
-          Password:
+          <span>Password</span>
           <input
             name="password"
+            className={validation.password === false ? 'invalid' : ''}
             type="password"
             value={this.state.password}
             onChange={this.handleChange}
             onBlur={this.validate}
           />
-          {this.validationMessage('password')}
         </label>
         <label>
-          Age:
+          <span>Biography</span>
+          <textarea
+            name="biography"
+            className={validation.biography === false ? 'invalid' : ''}
+            value={this.state.biography}
+            onChange={this.handleChange}
+            onBlur={this.validate}
+          />
+        </label>
+        <label className="age">
+          <span>Age</span>
           <select
             name="age"
+            className={validation.age === false ? 'invalid' : ''}
             value={this.state.age}
             onChange={this.handleChange}
             onBlur={this.validate}
@@ -204,20 +215,9 @@ export default class Form extends Component {
               </option>
             ))}
           </select>
-          {this.validationMessage('age')}
         </label>
-        <label>
-          Biography:
-          <textarea
-            name="biography"
-            value={this.state.biography}
-            onChange={this.handleChange}
-            onBlur={this.validate}
-          />
-          {this.validationMessage('biography')}
-        </label>
-        <label>
-          Image:
+        <label className="avatar">
+          <span>Chose Image</span>
           <input
             name="avatar"
             type="file"
@@ -225,7 +225,17 @@ export default class Form extends Component {
             onChange={this.handleChange}
           />
         </label>
-        <input type="submit" value="Submit" />
+        <input className="submit" type="submit" value="Add" />
+        <div className="suggestions">
+          {Object.keys(validation)
+            .filter(field => validation[field] === false)
+            .map(field => (
+              <div key={field}>
+                <span>{field}</span>
+                {messages[field]}
+              </div>
+            ))}
+        </div>
       </form>
     );
   }
