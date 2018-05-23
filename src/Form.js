@@ -216,7 +216,10 @@ export default class Form extends Component {
             ))}
           </select>
         </label>
-        <label className="avatar">
+        <label className={`avatar ${this.state.avatar ? 'has-image' : ''}`}>
+          {this.state.avatar ? (
+            <img src={URL.createObjectURL(this.state.avatar)} alt="" />
+          ) : null}
           <span>Chose Image</span>
           <input
             name="avatar"

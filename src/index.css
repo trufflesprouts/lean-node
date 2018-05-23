@@ -126,11 +126,26 @@ form textarea:focus,
 }
 
 .avatar {
+  position: relative;
   align-items: center;
   display: flex;
-  height: 50px;
+  height: 100px;
   justify-content: center;
   padding: 0;
+  overflow: hidden;
+}
+
+.avatar.has-image {
+  color: white;
+  background: black;
+}
+
+.avatar img {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: auto;
+  opacity: 0.5;
 }
 
 .avatar:hover,
