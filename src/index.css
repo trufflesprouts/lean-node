@@ -47,20 +47,11 @@ body {
   transform: translateY(-50%);
 }
 
-.flex {
-  display: flex;
-  height: 100vh;
-  margin: 0 auto;
-  max-width: 1000px;
-  overflow: hidden;
-}
-
 form {
-  display: block;
-  overflow: scroll;
-  padding: 30px;
-  position: relative;
+  position: fixed;
   width: 310px;
+  top: 60px;
+  left: calc(50vw - 500px);
 }
 
 label {
@@ -190,15 +181,14 @@ form textarea:focus,
   display: flex;
   flex: 1;
   flex-wrap: wrap;
+  max-width: 650px;
   height: 100%;
   justify-content: space-between;
   list-style: none;
-  margin: 0;
-  overflow: scroll;
+  margin: 40px auto;
   padding: 0;
-  padding: 20px;
-  padding-left: 1px;
   position: relative;
+  left: 175px;
 }
 
 form::-webkit-scrollbar,

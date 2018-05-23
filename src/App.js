@@ -68,19 +68,17 @@ export default class App extends Component {
             x
           </button>
         </div>
-        <div className="flex">
-          <Form
-            addUser={this.addUser}
-            removeUser={this.removeUser}
-            setError={this.setError}
-          />
-          <UserList
-            data={this.state.users}
-            updated={this.state.updated}
-            updateUser={this.updateUser}
-            addUpdateListener={this.addUpdateListener}
-          />
-        </div>
+        <Form
+          addUser={this.addUser}
+          removeUser={this.removeUser}
+          setError={this.setError}
+        />
+        <UserList
+          data={this.state.users}
+          updated={this.state.updated}
+          updateUser={this.updateUser}
+          addUpdateListener={this.addUpdateListener}
+        />
       </div>
     );
   }
