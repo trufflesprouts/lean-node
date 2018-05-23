@@ -36,7 +36,6 @@ app.use(bodyParser.json());
  * Controllers (route handlers).
  */
 const addUserController = require('./controllers/add');
-const getUsersController = require('./controllers/users');
 
 /**
  * Primary app routes.
@@ -55,6 +54,7 @@ const io = socketIo(server);
 io.on('connection', socket => {
   console.log('New client connected');
 
+  // listen to 'update' event from the client and update database accordingly
   socket.on('update', ({ id, ...rest }) => {
     database
       .collection('users')
@@ -62,6 +62,7 @@ io.on('connection', socket => {
       .update(rest);
   });
 
+  // publish users when the database changes (listened by src/App.js)
   database.collection('users').onSnapshot(table => {
     socket.emit('users', table.docs.map(doc => doc.data()));
   });

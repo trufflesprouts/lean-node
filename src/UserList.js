@@ -18,23 +18,33 @@ export default class UserList extends Component {
   }
 
   render() {
-    const { data, updateUser } = this.props;
-
+    const { data, updateUser, addUpdateListener } = this.props;
     return (
       <ul className="user-list">
+        {data.length < 1 ? <div className="spinner" /> : null}
         {data &&
           data.sort((a, b) => a.date < b.date).map(user => (
             <li key={user.id}>
               <button
-                className={`${this.state[user.id] ? '' : 'hidden'}`}
-                onClick={() => {
+                className={`apply-changes ${
+                  this.state[user.id] ? '' : 'hidden'
+                }`}
+                onClick={({ target }) => {
+                  target.disabled = true;
                   updateUser(user.id, this.state[user.id]);
+                  // this function will be called after the next update from the socket
+                  addUpdateListener(() => {
+                    this.setState({ [user.id]: null });
+                    target.disabled = false;
+                  });
                 }}
               >
-                apply
+                Save
               </button>
               <img src={getImageUrl(user.avatar)} alt="" />
-              <h3>{user.name}</h3>
+              <h2>
+                {user.name}, {user.age}
+              </h2>
               <textarea
                 className="username"
                 value={
@@ -65,9 +75,22 @@ export default class UserList extends Component {
                   });
                 }}
               />
-              <span className="age">{user.age}</span>
-              <span className="biography">{user.biography}</span>
-              <span className="date">{user.date}</span>
+              <textarea
+                className="biography"
+                value={
+                  (this.state[user.id] && this.state[user.id].biography) ||
+                  user.biography
+                }
+                onChange={({ target }) => {
+                  this.setState({
+                    [user.id]: {
+                      ...this.state[user.id],
+                      biography: target.value
+                    }
+                  });
+                }}
+              />
+              {/* <span className="biography">{user.biography}</span> */}
             </li>
           ))}
       </ul>
