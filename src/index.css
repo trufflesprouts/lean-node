@@ -48,10 +48,9 @@ body {
 }
 
 form {
-  position: fixed;
-  width: 310px;
-  top: 60px;
-  left: calc(50vw - 500px);
+  padding: 30px;
+  max-width: 450px;
+  margin: 0 auto;
 }
 
 label {
@@ -64,7 +63,6 @@ label span {
   font-size: 0.9em;
   opacity: 0.8;
   padding: 8px 8px;
-  width: 100px;
 }
 
 label:not(.age):not(.avatar) span {
@@ -185,10 +183,9 @@ form textarea:focus,
   height: 100%;
   justify-content: space-between;
   list-style: none;
-  margin: 40px auto;
-  padding: 0;
+  margin: 0 auto;
+  padding: 30px;
   position: relative;
-  left: 175px;
 }
 
 form::-webkit-scrollbar,
@@ -281,5 +278,20 @@ img {
 
   to {
     transform: rotateZ(360deg);
+  }
+}
+
+@media screen and (min-width: 1020px) {
+  form {
+    position: fixed;
+    width: 310px;
+    padding: 0;
+    top: 33px;
+    left: calc(50vw - 500px);
+  }
+  .user-list {
+    margin: 40px auto;
+    left: 175px;
+    padding: 0;
   }
 }

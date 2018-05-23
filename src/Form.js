@@ -220,7 +220,7 @@ export default class Form extends Component {
           {this.state.avatar ? (
             <img src={URL.createObjectURL(this.state.avatar)} alt="" />
           ) : null}
-          <span>Chose Image</span>
+          <span>Choose Image</span>
           <input
             name="avatar"
             type="file"
