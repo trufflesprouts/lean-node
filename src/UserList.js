@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import env from './env';
 
 const getPublicUrl = filename =>
-  `https://storage.googleapis.com/${env.index.storageBucket}/${filename}`;
+  encodeURI(
+    `https://storage.googleapis.com/${env.index.storageBucket}/${filename}`
+  );
 
 const getImageUrl = avatar => {
   if (!avatar) return '';
@@ -45,7 +47,10 @@ export default class UserList extends Component {
             >
               Save
             </button>
-            <img src={getImageUrl(user.avatar)} alt="" />
+            <div
+              className="user-image"
+              style={{ backgroundImage: `url(${getImageUrl(user.avatar)})` }}
+            />
             <h2>
               {user.name}, {user.age}
             </h2>

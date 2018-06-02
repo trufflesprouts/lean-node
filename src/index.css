@@ -237,11 +237,13 @@ li {
   resize: none;
 }
 
-img {
-  background: #e8e8e8;
+.user-image {
+  background-color: #e8e8e8;
   grid-row-end: 5;
   grid-row-start: 1;
   height: 130px;
+  background-size: cover;
+  background-position: center;
 }
 
 .apply-changes {
